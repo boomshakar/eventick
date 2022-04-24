@@ -37,16 +37,28 @@ const HomeBanner = () => {
 			</BannerContainer>
 			<HomeSearcBox>
 				<HomeSearcOption>
-					<label htmlFor="">Search Event</label>
-					<input type="text" name="" />
+					<div>
+						<label htmlFor="">Search Event</label>
+					</div>
+					<div>
+						<input type="text" name="" />
+					</div>
 				</HomeSearcOption>
 				<HomeSearcOption>
-					<label htmlFor="">Place</label>
-					<input type="text" name="" />
+					<div>
+						<label htmlFor="">Place</label>
+					</div>
+					<div>
+						<input type="text" name="" />
+					</div>
 				</HomeSearcOption>
 				<HomeSearcOption>
-					<label htmlFor="">Time</label>
-					<input type="text" name="" />
+					<div>
+						<label htmlFor="">Time</label>
+					</div>
+					<div>
+						<input type="text" name="" />
+					</div>
 				</HomeSearcOption>
 			</HomeSearcBox>
 		</div>

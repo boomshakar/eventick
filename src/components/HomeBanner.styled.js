@@ -83,12 +83,11 @@ export const HomeSearcBox = styled.div`
 	border-radius: 20px;
 	box-shadow: 0px 10px 50px rgba(61, 55, 241, 0.25);
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-around;
 	background: ${Colour.navyBlue};
 `;
 export const HomeSearcOption = styled.div`
 	color: ${Colour.textWhite};
 	position: relative;
-	display:; flex;
-	flex-direction: column;
 `;
