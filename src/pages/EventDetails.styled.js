@@ -51,13 +51,14 @@ export const EventTopInfo02 = styled.div`
 `;
 export const EventTopInfo03 = styled.button`
 	width: fit-content;
-	padding: 0.8rem 1.5rem;
+	padding: 0.3rem 1.5rem;
 	border-radius: 20px;
 	outline: none;
 	font-size: 16px;
 	color: ${Colour.textWhite};
-	background: ${Colour.pink};
-	border: 1px solid ${Colour.pink};
+	background: ${(prop) => (prop.prev ? Colour.justBlue : Colour.pink)};
+	border: 1px solid ${(prop) => (prop.prev ? Colour.justBlue : Colour.pink)};
+	cursor: pointer;
 
 	&:disabled {
 		background: ${Colour.justBlue};

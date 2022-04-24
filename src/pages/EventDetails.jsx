@@ -17,6 +17,7 @@ import {
 	EventTopSection,
 	PageContain,
 } from "./EventDetails.styled";
+import PreviewPrintTicket from "../components/PreviewPrintTicket";
 
 const EventDetails = () => {
 	const { eventId } = useParams();
@@ -24,34 +25,56 @@ const EventDetails = () => {
 	const [buyTicketModal, setBuyTicketModal] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);
 	const [modalText, setModalText] = useState("Content of the modal");
+	const [buyerName, setBuyerName] = useState("");
+	const [buyerEmail, setBuyerEmail] = useState("");
+	const [buyerCardNo, setBuyerCardNo] = useState("");
+	const [buyerCardMMYY, setBuyerCardMMYY] = useState("");
+	const [buyerCardCCV, setBuyerCardCCV] = useState("");
+	const [showPreviewTicket, setShowPreviewTicket] = useState(false);
+	const [previewState, setPreviewState] = useState(false);
 
 	let testRef = useRef();
-	const checkTicketStatus = JSON.parse(Cookie.get(`event${eventDetail[0]?.id}`));
-	// console.log({ checkTicketStatus: JSON.parse(checkTicketStatus) });
+	let checkTicketStatus = Cookie.get(`event${eventDetail[0]?.id}`);
 	console.log({ checkTicketStatus });
+	checkTicketStatus = checkTicketStatus !== undefined && JSON.parse(checkTicketStatus);
+	// console.log({ checkTicketStatus: JSON.parse(checkTicketStatus) });
+	const ticketBought = checkTicketStatus?.id === eventId;
 
 	useEffect(() => {
 		const result = mockedDataArr.filter((data) => data.id === eventId);
 		setEventDetail(result);
-		console.log({ result });
 	}, []);
 
 	const handleToBuyTicket = () => {
 		setBuyTicketModal(true);
 	};
 	const handleOk = () => {
-		setConfirmLoading(true);
+		if (buyerName === "" || buyerEmail === "" || buyerCardNo === "" || buyerCardMMYY === "" || buyerCardCCV === "")
+			return false;
 		setModalText("The modal will be closed after two seconds");
-		Cookie.set(`event${eventDetail[0]?.id}`, JSON.stringify({ id: `${eventDetail[0]?.id}`, gaga: "gagaewdsa" }));
+		setConfirmLoading(true);
+		Cookie.set(
+			`event${eventDetail[0]?.id}`,
+			JSON.stringify({ id: `${eventDetail[0]?.id}`, buyer_name: buyerName, buyer_email: buyerEmail })
+		);
 		setTimeout(() => {
+			setPreviewState(true);
 			setBuyTicketModal(false);
 			setConfirmLoading(false);
 			setModalText("Content of the modal");
+			setBuyerName("");
+			setBuyerEmail("");
+			setBuyerCardNo("");
+			setBuyerCardMMYY("");
+			setBuyerCardCCV("");
 		}, 2000);
 	};
 	const handleCancel = () => {
 		console.log("Clicked cancel button");
 		setBuyTicketModal(false);
+	};
+	const handleToPreviewTicket = () => {
+		setPreviewState(true);
 	};
 
 	return (
@@ -73,8 +96,13 @@ const EventDetails = () => {
 											<div>Hello</div>
 											<div>Hello</div>
 										</EventTopInfo02>
-										{checkTicketStatus?.id === eventId ? (
-											<EventTopInfo03 disabled>Ticket Bought</EventTopInfo03>
+										{ticketBought ? (
+											<>
+												{/* <EventTopInfo03 disabled>Ticket Bought</EventTopInfo03> */}
+												<EventTopInfo03 prev onClick={handleToPreviewTicket}>
+													Preview Ticket
+												</EventTopInfo03>
+											</>
 										) : (
 											<EventTopInfo03 onClick={handleToBuyTicket}>Buy Ticket</EventTopInfo03>
 										)}
@@ -103,10 +131,10 @@ const EventDetails = () => {
 				<div style={{ width: "100%", height: "100%" }}>
 					<Form layout="vertical">
 						<Form.Item label="Name" required tooltip="This is a required field">
-							<Input type="text" placeholder="input your Full Name" />
+							<Input type="text" placeholder="input your Full Name" onChange={(e) => setBuyerName(e.target.value)} />
 						</Form.Item>
 						<Form.Item label="Email" required tooltip="This is a required field">
-							<Input type="email" placeholder="input your Email" />
+							<Input type="email" placeholder="input your Email" onChange={(e) => setBuyerEmail(e.target.value)} />
 						</Form.Item>
 						<Form.Item
 							label="Card Information"
@@ -114,18 +142,29 @@ const EventDetails = () => {
 							style={{ marginBottom: 0 }}
 						>
 							<Form.Item name="cardNumber">
-								<Input type="number" placeholder="XXXX-XXXX-XXXX-XXXX" />
+								<Input
+									type="number"
+									placeholder="XXXX-XXXX-XXXX-XXXX"
+									onChange={(e) => setBuyerCardNo(e.target.value)}
+								/>
 							</Form.Item>
 							<Form.Item name="mmyy" style={{ display: "inline-block", width: "calc(50% - 8px)" }}>
-								<Input type="number" placeholder="MM/YY" />
+								<Input type="number" placeholder="MM/YY" onChange={(e) => setBuyerCardMMYY(e.target.value)} />
 							</Form.Item>
 							<Form.Item name="ccv" style={{ display: "inline-block", width: "calc(50% - 1px)", margin: "0 0 0 8px" }}>
-								<Input type="number" placeholder="CCV" />
+								<Input type="number" placeholder="CCV" onChange={(e) => setBuyerCardCCV(e.target.value)} />
 							</Form.Item>
 						</Form.Item>
 					</Form>
 				</div>
 			</BuyTicket>
+			{previewState && (
+				<PreviewPrintTicket
+					eventId={eventDetail[0]?.id}
+					handlePreviewState={() => setPreviewState(false)}
+					previewState={previewState}
+				/>
+			)}
 		</>
 	);
 };
