@@ -1,8 +1,8 @@
-import event1 from "../assets/event-1.png";
-import event2 from "../assets/event-2.png";
-import event3 from "../assets/event-3.png";
-import event4 from "../assets/event-4.png";
-import event5 from "../assets/event-5.png";
+import event1 from "../assets/eventarr-1.jpg";
+import event2 from "../assets/eventarr-2.jpg";
+import event3 from "../assets/eventarr-3.jpg";
+import event4 from "../assets/eventarr-4.jpg";
+import event5 from "../assets/eventarr-5.jpg";
 import event6 from "../assets/event-6.png";
 
 export const mockedDataArr = [
