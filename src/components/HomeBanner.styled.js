@@ -46,6 +46,8 @@ export const MainEventInfo = styled.div`
 
 	h3 {
 		font-size: 40px;
+		font-weight: 700;
+		color: ${Colour.textWhite};
 	}
 	p {
 		font-size: 18px;
@@ -60,13 +62,15 @@ export const EventBtn = styled.button`
 	border: 1px solid ${(props) => (props.bg === "primary" ? Colour.pink : Colour.textWhite)};
 	border-radius: 50px;
 	outline: none;
-	padding: 14px 20px;
+	padding: 8px 16px;
 	margin-right: 15px;
 	cursor: pointer;
 	font-size: 18px;
 
 	&:hover {
+		transition: all 0.3s ease-in-out;
 		box-shadow: 0px 10px 50px rgba(61, 55, 241, 0.25);
+		filter: brightness(0.9);
 	}
 `;
 

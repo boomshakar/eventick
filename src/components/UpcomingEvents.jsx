@@ -29,9 +29,9 @@ const UpcomingEvents = () => {
 			<TopBar>
 				<h2>Upcoming Events</h2>
 				<TopBarFilter>
-					<div>da</div>
-					<div>da</div>
-					<div>da</div>
+					<div>Weekdays</div>
+					<div>Event Type</div>
+					<div>Category</div>
 				</TopBarFilter>
 			</TopBar>
 			<CardContainer>
