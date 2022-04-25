@@ -15,13 +15,30 @@ export const CardContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 `;
+
+export const CardTopSection = styled.div`
+	position: relative;
+	padding: 0.8rem;
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 20px;
+
+	img {
+		position: relative;
+		width: 100%;
+		height: 180px;
+		border-radius: 20px;
+	}
+`;
+export const CardBottomSection = styled.div`
+	padding: 15px 10px;
+	color: ${Colour.writeGrey};
+`;
 export const Card = styled.div`
 	width: 300px;
+	height: fit-content;
 	margin: 0 auto;
 	margin-bottom: 20px;
-	background: rgba(255, 255, 255, 0.5);
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
+	background: ${Colour.bgGrey};
 	transition: all 0.3s ease-in-out;
 
 	&:hover {
@@ -30,62 +47,46 @@ export const Card = styled.div`
 		border-bottom-left-radius: 20px;
 		border-bottom-right-radius: 20px;
 	}
-`;
-
-export const CardTopSection = styled.div`
-	position: relative;
-
-	img {
-		position: relative;
-		width: 100%;
-		height: 100%;
+	&:hover ${CardTopSection} {
+		transition: all 0.3s ease-in-out;
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 0px;
 	}
-
-	span {
-		background: ${Colour.textWhite};
-		color: ${Colour.textBlack};
-		position: absolute;
-		top: 0;
-		right: 10%;
+	&:hover ${CardBottomSection} {
+		transition: all 0.3s ease-in-out;
+		color: ${Colour.hovWriteGrey};
+		background: ${Colour.fadeBlack};
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
 	}
 `;
-export const CardBottomSection = styled.div`
-	button {
-		outline: none;
-		font-size: 14px;
-		font-weight: bold;
-		color: ${Colour.textWhite};
-		border: 2px solid ${Colour.textWhite};
-		background-color: ${Colour.justBlue};
-		border-radius: 50px;
-		padding: 8px 12px;
-	}
-`;
-export const CardBottomTitle = styled.div`
+export const CardTopTitle = styled.div`
 	display: inline-flex;
 	align-items: center;
 
+	span,
 	h5 {
-		margin: 5px auto;
+		font-size: 18px;
+		font-weight: 700;
+	}
+	h5 {
+		margin-left: 15px;
+		margin-bottom: 0px;
 	}
 `;
+export const CardBottomLocateContainer = styled.div``;
 export const CardBottomLocate = styled.div`
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
+
+	span {
+		font-size: 18px;
+		margin-right: 10px;
+	}
 
 	p {
 		font-size: 12px;
 		margin: 5px auto;
-	}
-
-	button {
-		outline: none;
-		font-size: 14px;
-		font-weight: bold;
-		color: ${Colour.textWhite};
-		border: 2px solid ${Colour.textWhite};
-		background-color: ${Colour.justBlue};
-		border-radius: 50px;
-		padding: 8px 12px;
 	}
 `;

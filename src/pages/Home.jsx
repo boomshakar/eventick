@@ -3,7 +3,7 @@ import UpcomingEvents from "../components/UpcomingEvents";
 
 const Home = () => {
 	return (
-		<div>
+		<div style={{ backgroundColor: "#e5e5e5" }}>
 			{/* <h1>Home</h1> */}
 			<HomeBanner />
 			<UpcomingEvents />
