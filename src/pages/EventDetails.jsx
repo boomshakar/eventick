@@ -6,10 +6,17 @@ import Cookie from "js-cookie";
 import QRCode from "react-qr-code";
 import ReactToPrint from "react-to-print";
 import {
+	EventBottomL,
+	EventBottomR,
+	EventBottomRFeatures,
+	EventBottomRLocation,
+	EventBottomRPolicy,
+	EventBottomSection,
 	EventContain,
 	EventContainBg,
 	EventImg,
 	EventMainContent,
+	EventPriceTagContain,
 	EventTopInfo,
 	EventTopInfo01,
 	EventTopInfo02,
@@ -18,6 +25,7 @@ import {
 	PageContain,
 } from "./EventDetails.styled";
 import PreviewPrintTicket from "../components/PreviewPrintTicket";
+import { thousandFormatter } from "../utils/helper";
 
 const EventDetails = () => {
 	const { eventId } = useParams();
@@ -33,7 +41,6 @@ const EventDetails = () => {
 	const [showPreviewTicket, setShowPreviewTicket] = useState(false);
 	const [previewState, setPreviewState] = useState(false);
 
-	let testRef = useRef();
 	let checkTicketStatus = Cookie.get(`event${eventDetail[0]?.id}`);
 	console.log({ checkTicketStatus });
 	checkTicketStatus = checkTicketStatus !== undefined && JSON.parse(checkTicketStatus);
@@ -80,44 +87,86 @@ const EventDetails = () => {
 	return (
 		<>
 			<PageContain>
-				{eventDetail?.map(({ id, event_title, event_date, event_banner, location, powered_by, verified }) => {
-					return (
-						<EventContain key={id}>
-							<EventContainBg bgImg={event_banner} />
-							<EventMainContent>
-								<EventTopSection>
-									<EventImg src={event_banner} alt={event_title} />
-									<EventTopInfo>
-										<EventTopInfo01>
-											<h5>{event_title}</h5>
-											<p>by : {powered_by} </p>
-										</EventTopInfo01>
-										<EventTopInfo02 ref={(el) => (testRef = el)}>
-											<div>Hello</div>
-											<div>Hello</div>
-										</EventTopInfo02>
-										{ticketBought ? (
-											<>
-												{/* <EventTopInfo03 disabled>Ticket Bought</EventTopInfo03> */}
-												<EventTopInfo03 prev onClick={handleToPreviewTicket}>
-													Preview Ticket
-												</EventTopInfo03>
-											</>
-										) : (
-											<EventTopInfo03 onClick={handleToBuyTicket}>Buy Ticket</EventTopInfo03>
-										)}
-									</EventTopInfo>
-								</EventTopSection>
-
-								<QRCode value="heyss" title="My Name" />
-								<ReactToPrint
-									trigger={() => <EventTopInfo03>Prin this copy test</EventTopInfo03>}
-									content={() => testRef}
-								/>
-							</EventMainContent>
-						</EventContain>
-					);
-				})}
+				{eventDetail?.map(
+					({
+						id,
+						event_title,
+						event_date,
+						event_subtitle,
+						event_details,
+						event_banner,
+						location,
+						ticket_price,
+						featuring,
+						powered_by,
+						verified,
+					}) => {
+						return (
+							<EventContain key={id}>
+								<EventContainBg bgImg={event_banner} />
+								<EventMainContent>
+									<EventTopSection>
+										<EventImg src={event_banner} alt={event_title} />
+										<EventTopInfo>
+											<EventTopInfo01>
+												<h1>{event_title}</h1>
+												<p>by : {powered_by} </p>
+											</EventTopInfo01>
+											<EventTopInfo02>
+												{Object.entries(ticket_price).map(([key, value]) => (
+													<EventPriceTagContain key={key}>
+														<h3>{key}</h3>
+														<p>
+															<span></span>
+															<span></span>
+															<span></span>
+															<span></span>₦{thousandFormatter(value)}
+														</p>
+													</EventPriceTagContain>
+												))}
+											</EventTopInfo02>
+											{ticketBought ? (
+												<>
+													{/* <EventTopInfo03 disabled>Ticket Bought</EventTopInfo03> */}
+													<EventTopInfo03 prev onClick={handleToPreviewTicket}>
+														Preview Ticket
+													</EventTopInfo03>
+												</>
+											) : (
+												<EventTopInfo03 onClick={handleToBuyTicket}>Buy Ticket</EventTopInfo03>
+											)}
+										</EventTopInfo>
+									</EventTopSection>
+									<EventBottomSection>
+										<EventBottomL>
+											<h4>{event_subtitle}</h4>
+											<h3>About this event</h3>
+											<p>{event_details}</p>
+										</EventBottomL>
+										<EventBottomR>
+											<EventBottomRFeatures>
+												<h3>Featuring</h3>
+												<ul>
+													{featuring.map((feature, i) => (
+														<li key={i}>{feature}</li>
+													))}
+												</ul>
+											</EventBottomRFeatures>
+											<EventBottomRLocation>
+												<h3>Location</h3>
+												<p>{location}</p>
+											</EventBottomRLocation>
+											<EventBottomRPolicy>
+												<h3>Refund Policy</h3>
+												<p>Contact the organizer to request a refund.Eventbrite's fee is nonrefundable.</p>
+											</EventBottomRPolicy>
+										</EventBottomR>
+									</EventBottomSection>
+								</EventMainContent>
+							</EventContain>
+						);
+					}
+				)}
 			</PageContain>
 
 			<BuyTicket

@@ -40,13 +40,13 @@ const UpcomingEvents = () => {
 						{/* <Skeleton.Avatar active size="large" shape="square" /> */}
 						<Link to={`/event/${id}`}>
 							<Badge.Ribbon text={event_date}>
-								<CardTopSection>
+								<CardTopSection title={event_title}>
 									<img src={event_banner} alt={event_title} />
 									<CardTopTitle>
-										<span>{verified ? <GoVerified /> : <GoUnverified />}</span>
-										<Link to={`/event/${id}`}>
-											<h5>{event_title}</h5>
-										</Link>
+										<span>{verified ? <GoVerified /> : <GoUnverified style={{ color: "#000000" }} />}</span>
+										{/* <Link to={`/event/${id}`}> */}
+										<h5>{event_title.substring(0, 20).concat("...")}</h5>
+										{/* </Link> */}
 									</CardTopTitle>
 								</CardTopSection>
 							</Badge.Ribbon>

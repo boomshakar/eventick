@@ -4,7 +4,7 @@ const Colour = {
 	fadeBlack: "#1a202c",
 	navyBlue: "#242565",
 	justBlue: "#5522cc",
-	grey: "#EEE1FF",
+	grey: "#f5f5f5",
 	bgGrey: " #e5e5e5",
 	writeGrey: "#7989A2",
 	hovWriteGrey: "#B2B2B2",
