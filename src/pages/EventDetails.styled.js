@@ -69,14 +69,15 @@ export const EventTopInfoMobile = styled.div`
 	}
 `;
 export const EventTopInfo01 = styled.div`
-	padding: 10px 12px 10px;
+	padding: 1.5rem 0.9rem;
 	h1 {
-		font-size: clamp(0.5em, 10vw, 1em);
-		font-weight: 600;
+		font-size: clamp(0.8rem, 5vw, 1.2rem);
+		font-weight: 700;
 		color: ${Colour.navyBlue};
 	}
 	p {
-		font-size: clamp(0.3em, 10vw, 1em);
+		font-size: clamp(0.8rem, 3vw, 1rem);
+		line-height: 1.8;
 		font-weight: 500;
 		color: ${Colour.writeGrey};
 	}
