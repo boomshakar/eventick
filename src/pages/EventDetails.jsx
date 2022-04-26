@@ -20,6 +20,7 @@ import {
 	EventTopInfo,
 	EventTopInfo01,
 	EventTopInfo02,
+	EventTopInfo02Mobile,
 	EventTopInfo03,
 	EventTopSection,
 	PageContain,
@@ -139,6 +140,19 @@ const EventDetails = () => {
 									</EventTopSection>
 									<EventBottomSection>
 										<EventBottomL>
+											<EventTopInfo02Mobile>
+												{Object.entries(ticket_price).map(([key, value]) => (
+													<EventPriceTagContain key={key}>
+														<h3>{key}</h3>
+														<p>
+															<span></span>
+															<span></span>
+															<span></span>
+															<span></span>₦{thousandFormatter(value)}
+														</p>
+													</EventPriceTagContain>
+												))}
+											</EventTopInfo02Mobile>
 											<h4>{event_subtitle}</h4>
 											<h3>About this event</h3>
 											<p>{event_details}</p>
