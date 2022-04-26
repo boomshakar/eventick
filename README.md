@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple event ticketting webapp that could be used to buy/book tickets for available events on the website. It also allows you to ppreview and print your ticket which is encoded in a QR-Code
+This is a simple event ticketting webapp that could be used to buy/book tickets for available events on the website. It also allows you to preview and print your ticket which is encoded in a QR-Code
 
 ## Table of Contents
 
