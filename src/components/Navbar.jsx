@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import eventickLogo from "../assets/eventick-logo.svg";
+import eventickLogo from "../assets/icons/eventick-logo.svg";
 
 const Homenav = styled.nav`
 	position: fixed;

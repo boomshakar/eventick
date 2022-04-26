@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Modal as BuyTicket, Input, InputNumber, Space, Form, Select, DatePicker } from "antd";
@@ -27,7 +28,8 @@ import {
 	PageContain,
 } from "./EventDetails.styled";
 import PreviewPrintTicket from "../components/PreviewPrintTicket";
-import { thousandFormatter } from "../utils/helper";
+import { fieldChecker, thousandFormatter } from "../utils/helper";
+import { showToastMessage } from "../utils/Toast";
 
 const EventDetails = () => {
 	const { eventId } = useParams();
@@ -35,19 +37,15 @@ const EventDetails = () => {
 	const [buyTicketModal, setBuyTicketModal] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);
 	const [modalText, setModalText] = useState("Content of the modal");
-	const [buyerName, setBuyerName] = useState("");
-	const [buyerEmail, setBuyerEmail] = useState("");
-	const [buyerGender, setBuyerGender] = useState("");
-	const [buyerBirthDate, setBuyerBirthDate] = useState("");
-	const [buyerPhoneNumber, setBuyerPhoneNumber] = useState("");
-	const [buyerCardNo, setBuyerCardNo] = useState("");
-	const [buyerCardMMYY, setBuyerCardMMYY] = useState("");
-	const [buyerCardCCV, setBuyerCardCCV] = useState("");
+	const [buyerName, setBuyerName] = useState({ id: "Full Name", value: "" });
+	const [buyerEmail, setBuyerEmail] = useState({ id: "Email", value: "" });
+	const [buyerGender, setBuyerGender] = useState({ id: "Gender", value: "" });
+	const [buyerBirthDate, setBuyerBirthDate] = useState({ id: "Birthdate", value: "" });
+	const [buyerPhoneNumber, setBuyerPhoneNumber] = useState({ id: "Phone Number", value: "" });
 	const [showPreviewTicket, setShowPreviewTicket] = useState(false);
 	const [previewState, setPreviewState] = useState(false);
 
 	let checkTicketStatus = Cookie.get(`event${eventDetail[0]?.id}`);
-	console.log({ checkTicketStatus });
 	checkTicketStatus = checkTicketStatus !== undefined && JSON.parse(checkTicketStatus);
 	// console.log({ checkTicketStatus: JSON.parse(checkTicketStatus) });
 	const ticketBought = checkTicketStatus?.id === eventId;
@@ -61,29 +59,55 @@ const EventDetails = () => {
 		setBuyTicketModal(true);
 	};
 	const handleOk = () => {
-		if (buyerName === "" || buyerEmail === "" || buyerGender === "" || buyerBirthDate === "" || buyerPhoneNumber === "")
-			return false;
+		const fieldsToCheck = [buyerName, buyerEmail, buyerGender, buyerBirthDate, buyerPhoneNumber];
+		if (
+			buyerName.value === "" ||
+			buyerEmail.value === "" ||
+			buyerGender.value === "" ||
+			buyerBirthDate.value === "" ||
+			buyerPhoneNumber.value === ""
+		) {
+			for (let i = 0; i < fieldsToCheck.length; i++) {
+				fieldChecker(fieldsToCheck[i]);
+			}
+
+			return;
+		}
 		setModalText("The modal will be closed after two seconds");
 		setConfirmLoading(true);
-		Cookie.set(
-			`event${eventDetail[0]?.id}`,
-			JSON.stringify({
-				id: `${eventDetail[0]?.id}`,
-				buyer_name: buyerName,
-				buyer_email: buyerEmail,
-				buyer_gender: buyerGender,
-			})
+		const Test = () => (
+			<>
+				{" "}
+				<span>Congratulations, your seat has been reserved.</span>
+				<div>
+					<i>Make sure you save/print your ticket as it would be check at entry point of the venue.</i>
+				</div>
+			</>
 		);
 		setTimeout(() => {
+			showToastMessage({
+				type: "success",
+				title: "Seat Reserved!",
+				description: <Test />,
+			});
+			Cookie.set(
+				`event${eventDetail[0]?.id}`,
+				JSON.stringify({
+					id: `${eventDetail[0]?.id}`,
+					buyer_name: buyerName.value,
+					buyer_email: buyerEmail.value,
+					buyer_gender: buyerGender.value,
+				})
+			);
 			setPreviewState(true);
 			setBuyTicketModal(false);
 			setConfirmLoading(false);
 			setModalText("Content of the modal");
-			setBuyerName("");
-			setBuyerEmail("");
-			setBuyerGender("");
-			setBuyerBirthDate("");
-			setBuyerPhoneNumber("");
+			setBuyerName({ id: "Full Name", value: "" });
+			setBuyerEmail({ id: "Email", value: "" });
+			setBuyerGender({ id: "Gender", value: "" });
+			setBuyerBirthDate({ id: "Birthdate", value: "" });
+			setBuyerPhoneNumber({ id: "Phone Number", value: "" });
 		}, 2000);
 	};
 	const handleCancel = () => {
@@ -219,25 +243,43 @@ const EventDetails = () => {
 				<div style={{ width: "100%", height: "100%" }}>
 					<Form layout="vertical">
 						<Form.Item label="Name" required tooltip="This is a required field">
-							<Input type="text" placeholder="Full Name" onChange={(e) => setBuyerName(e.target.value)} />
+							<Input
+								type="text"
+								placeholder="Full Name"
+								onChange={(e) => setBuyerName((prevData) => ({ ...prevData, value: e.target.value }))}
+							/>
 						</Form.Item>
 						<Form.Item label="Email" required tooltip="This is a required field">
-							<Input type="email" placeholder="Email" onChange={(e) => setBuyerEmail(e.target.value)} />
+							<Input
+								type="email"
+								placeholder="Email"
+								onChange={(e) => setBuyerEmail((prevData) => ({ ...prevData, value: e.target.value }))}
+							/>
 						</Form.Item>
 						{/* phone number, gender, dob */}
 						<Space size="large" wrap>
 							<Form.Item label="Gender" required tooltip="This is a required field">
-								<Select placeholder="Select a gender" onChange={(e) => setBuyerGender(e)}>
+								<Select
+									placeholder="Select a gender"
+									onChange={(e) => setBuyerGender((prevData) => ({ ...prevData, value: e }))}
+								>
 									<Select.Option value="female">Female</Select.Option>
 									<Select.Option value="male">Male</Select.Option>
 								</Select>
 							</Form.Item>
 							<Form.Item label="Date of Birth" required tooltip="This is a required field">
-								<DatePicker onChange={(a, b) => setBuyerBirthDate(b)} format="DD-MM-YYYY" />
+								<DatePicker
+									onChange={(a, b) => setBuyerBirthDate((prevData) => ({ ...prevData, value: b }))}
+									format="DD-MM-YYYY"
+								/>
 							</Form.Item>
 						</Space>
 						<Form.Item label="Phone Number" required tooltip="This is a required field">
-							<Input type="number" placeholder="Phone Number" onChange={(e) => setBuyerPhoneNumber(e.target.value)} />
+							<Input
+								type="number"
+								placeholder="Phone Number"
+								onChange={(e) => setBuyerPhoneNumber((prevData) => ({ ...prevData, value: e.target.value }))}
+							/>
 						</Form.Item>
 					</Form>
 				</div>
