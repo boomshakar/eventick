@@ -5,6 +5,7 @@ export const TopBar = styled.div`
 	display: flex;
 	justify-content: space-between;
 	padding: 1rem;
+	margin-top: 2rem;
 
 	h2 {
 		color: ${Colour.navyBlue};

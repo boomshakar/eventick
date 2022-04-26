@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import homeBg from "../assets/Rectangle-12.png";
+import homeBg from "../assets/Rectangle-123.png";
 import Colour from "../utils/Color";
 
 export const BannerContainer = styled.div`
-	height: 92vh;
+	height: 100%;
 	width: 100%;
 	position: relative;
 	background-size: cover;
@@ -29,7 +29,7 @@ export const BannerOverlay = styled.div`
 
 export const BannerContent = styled.div`
 	position: relative;
-	margin-top: 5rem;
+	padding-top: 5rem;
 	height: 100%;
 	width: 100%;
 	display: flex;
@@ -37,7 +37,8 @@ export const BannerContent = styled.div`
 
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
-		margin-top: 3rem;
+		padding-top: 3rem;
+		padding-bottom: 1rem;
 	}
 `;
 
@@ -82,6 +83,9 @@ export const MainEventInfo = styled.div`
 `;
 export const EventBtnContain = styled.div`
 	display: flex;
+	@media only screen and (max-width: 900px) {
+		justify-content: center;
+	}
 `;
 export const EventBtn = styled.button`
 	color: ${Colour.textWhite};
@@ -107,7 +111,7 @@ export const EventBtn = styled.button`
 
 export const HomeSearcBox = styled.div`
 	position: absolute;
-	bottom: 3%;
+	bottom: -8%;
 	width: 70%;
 	left: 15%;
 	right: auto;
