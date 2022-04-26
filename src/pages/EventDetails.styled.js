@@ -4,7 +4,7 @@ import Colour from "../utils/Color";
 export const PageContain = styled.div`
 	position: relative;
 	${"" /* margin-top: 4%; */}
-	margin-top: 2rem;
+	${"" /* margin-top: 2rem; */}
 `;
 export const EventContain = styled.div`
 	position: relative;
@@ -23,19 +23,17 @@ export const EventMainContent = styled.div`
 	left: 50%;
 	transform: translate(-50%, -40%);
 	z-index: 2;
-	width: 80%;
+	width: 90%;
 	height: 100%;
 	max-width: 1200px;
 `;
 
 export const EventTopSection = styled.section`
 	width: 100%;
-	height: 100%;
 	display: flex;
 
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
-		max-height: none;
 	}
 `;
 export const EventImg = styled.img`
@@ -55,7 +53,19 @@ export const EventTopInfo = styled.div`
 	justify-content: space-between;
 
 	@media only screen and (max-width: 900px) {
+		display: none;
+	}
+`;
+export const EventTopInfoMobile = styled.div`
+	display: none;
+
+	@media only screen and (max-width: 900px) {
 		width: 100%;
+		display: flex;
+		background: ${Colour.grey};
+		flex-direction: column;
+		flex-shrink: 0;
+		justify-content: space-between;
 	}
 `;
 export const EventTopInfo01 = styled.div`
@@ -243,9 +253,15 @@ export const EventBottomL = styled.div`
 	padding: 1.5rem 2rem;
 	font-size: clamp(0.8rem, 3vw, 1.2em);
 
+	h2 {
+		font-size: clamp(0.8rem, 5vw, 1.5rem);
+		font-weight: 700;
+		color: ${Colour.navyBlue};
+	}
+
 	p {
-		font-size: clamp(0.6rem, 3vw, 1rem);
-		line-height: 1.5;
+		font-size: clamp(0.8rem, 3vw, 1rem);
+		line-height: 1.8;
 	}
 	@media only screen and (max-width: 900px) {
 		width: 100%;
@@ -259,6 +275,36 @@ export const EventBottomR = styled.div`
 		width: 100%;
 	}
 `;
-export const EventBottomRFeatures = styled.div``;
-export const EventBottomRLocation = styled.div``;
-export const EventBottomRPolicy = styled.div``;
+export const EventBottomRFeatures = styled.div`
+	h2 {
+		font-size: clamp(0.8rem, 5vw, 1.2rem);
+		font-weight: 700;
+		color: ${Colour.navyBlue};
+	}
+	li {
+		font-size: clamp(0.8rem, 3vw, 1rem);
+		line-height: 1.8;
+	}
+`;
+export const EventBottomRLocation = styled.div`
+	h2 {
+		font-size: clamp(0.8rem, 5vw, 1.2rem);
+		font-weight: 700;
+		color: ${Colour.navyBlue};
+	}
+	p {
+		font-size: clamp(0.8rem, 3vw, 1rem);
+		line-height: 1.8;
+	}
+`;
+export const EventBottomRPolicy = styled.div`
+	h2 {
+		font-size: clamp(0.8rem, 5vw, 1.2rem);
+		font-weight: 700;
+		color: ${Colour.navyBlue};
+	}
+	p {
+		font-size: clamp(0.8rem, 3vw, 1rem);
+		line-height: 1.8;
+	}
+`;

@@ -22,6 +22,7 @@ import {
 	EventTopInfo02,
 	EventTopInfo02Mobile,
 	EventTopInfo03,
+	EventTopInfoMobile,
 	EventTopSection,
 	PageContain,
 } from "./EventDetails.styled";
@@ -140,6 +141,22 @@ const EventDetails = () => {
 									</EventTopSection>
 									<EventBottomSection>
 										<EventBottomL>
+											<EventTopInfoMobile>
+												<EventTopInfo01>
+													<h1>{event_title}</h1>
+													<p>by : {powered_by} </p>
+												</EventTopInfo01>
+												{ticketBought ? (
+													<>
+														{/* <EventTopInfo03 disabled>Ticket Bought</EventTopInfo03> */}
+														<EventTopInfo03 prev onClick={handleToPreviewTicket}>
+															Preview Ticket
+														</EventTopInfo03>
+													</>
+												) : (
+													<EventTopInfo03 onClick={handleToBuyTicket}>Buy Ticket</EventTopInfo03>
+												)}
+											</EventTopInfoMobile>
 											<EventTopInfo02Mobile>
 												{Object.entries(ticket_price).map(([key, value]) => (
 													<EventPriceTagContain key={key}>
@@ -154,12 +171,12 @@ const EventDetails = () => {
 												))}
 											</EventTopInfo02Mobile>
 											<h4>{event_subtitle}</h4>
-											<h3>About this event</h3>
+											<h2>About this event</h2>
 											<p>{event_details}</p>
 										</EventBottomL>
 										<EventBottomR>
 											<EventBottomRFeatures>
-												<h3>Featuring</h3>
+												<h2>Featuring</h2>
 												<ul>
 													{featuring.map((feature, i) => (
 														<li key={i}>{feature}</li>
@@ -167,11 +184,11 @@ const EventDetails = () => {
 												</ul>
 											</EventBottomRFeatures>
 											<EventBottomRLocation>
-												<h3>Location</h3>
+												<h2>Location</h2>
 												<p>{location}</p>
 											</EventBottomRLocation>
 											<EventBottomRPolicy>
-												<h3>Refund Policy</h3>
+												<h2>Refund Policy</h2>
 												<p>Contact the organizer to request a refund.Eventbrite's fee is nonrefundable.</p>
 											</EventBottomRPolicy>
 										</EventBottomR>
