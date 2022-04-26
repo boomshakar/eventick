@@ -10,7 +10,7 @@ export const mockedDataArr = [
 		id: "10001",
 		event_title: "HARVESTERS SKILL ACQUISITION PROGRAM - ANTHONY",
 		event_subtitle: "Learn and Earn from High-Income Skills at HSAP",
-		event_date: "Wed, Apr 27, 2022, 9:00 AM WAT",
+		event_date: "Wed, Apr 27, 2022 9:00 AM WAT",
 		event_banner: event1,
 		ticket_price: {
 			regular: "5000",
@@ -41,7 +41,7 @@ export const mockedDataArr = [
 		event_title: "EdifyCity Movie Night",
 		event_subtitle:
 			"EdifyCity Movie Night is a social cinema created for entrepreneurs and their families to chill, unwind and have fun.",
-		event_date: "Sun, Apr 24, 2022, 3:00 PM WAT",
+		event_date: "Sun, Apr 24, 2022 3:00 PM WAT",
 		event_banner: event2,
 		ticket_price: {
 			regular: "5000",
@@ -76,7 +76,7 @@ export const mockedDataArr = [
 		event_title: "Tenstrings Ones2watch Live Music Show",
 		event_subtitle:
 			"The Tenstrings Ones2Watch show is a fascinating live music, pop-culture, youth-centric, sunset show that holds right in the heart of Lagos.",
-		event_date: "Wed, April 27, 2022 6:00 PM WAT",
+		event_date: "Wed, Apr 27, 2022 6:00 PM WAT",
 		event_banner: event3,
 		ticket_price: {
 			regular: "5000",
@@ -107,7 +107,7 @@ export const mockedDataArr = [
 		event_title: "Tourism and Technology Summit Africa 2022",
 		event_subtitle:
 			"Tourism and Technology Summit is an annual summit dedicated to the digital transformation of the Tourism,Travel &Hospital industry in Africa",
-		event_date: "Fri, September 30, 2022 10:00 AM WAT",
+		event_date: "Fri, Sept 30, 2022 10:00 AM WAT",
 		event_banner: event4,
 		ticket_price: {
 			regular: "5000",
@@ -138,7 +138,7 @@ export const mockedDataArr = [
 		event_title: "Lagos Vendease Games Night - April 2022",
 		event_subtitle:
 			"Vendease Social Games Festival is an evening-long fiesta bringing young professionals to enjoy games, have fun and network.",
-		event_date: "Sat, April 30, 2022 6:00 PM WAT",
+		event_date: "Sat, Apr 30, 2022 6:00 PM WAT",
 		event_banner: event5,
 		ticket_price: {
 			regular: "5000",
@@ -172,7 +172,7 @@ export const mockedDataArr = [
 		id: "10006",
 		event_title: "HARVESTERS SKILL ACQUISITION PROGRAM - ANTHONY",
 		event_subtitle: "Learn and Earn from High-Income Skills at HSAP",
-		event_date: "Wed, Apr 27, 2022, 9:00 AM WAT",
+		event_date: "Wed, Apr 27, 2022 9:00 AM WAT",
 		event_banner: event1,
 		ticket_price: {
 			regular: "5000",
@@ -203,7 +203,7 @@ export const mockedDataArr = [
 		event_title: "Tourism and Technology Summit Africa 2022",
 		event_subtitle:
 			"Tourism and Technology Summit is an annual summit dedicated to the digital transformation of the Tourism,Travel &Hospital industry in Africa",
-		event_date: "Fri, September 30, 2022 10:00 AM WAT",
+		event_date: "Fri, Sept 30, 2022 10:00 AM WAT",
 		event_banner: event4,
 		ticket_price: {
 			regular: "5000",
@@ -234,7 +234,7 @@ export const mockedDataArr = [
 		event_title: "EdifyCity Movie Night",
 		event_subtitle:
 			"EdifyCity Movie Night is a social cinema created for entrepreneurs and their families to chill, unwind and have fun.",
-		event_date: "Sun, Apr 24, 2022, 3:00 PM WAT",
+		event_date: "Sun, Apr 24, 2022 3:00 PM WAT",
 		event_banner: event2,
 		ticket_price: {
 			regular: "5000",

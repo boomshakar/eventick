@@ -16,6 +16,7 @@
     "react-scripts": "5.0.1",
     "react-to-print": "^2.14.6",
     "styled-components": "^5.3.5",
+    "swiper": "^8.1.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

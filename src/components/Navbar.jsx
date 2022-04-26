@@ -14,9 +14,8 @@ const Homenav = styled.nav`
 	magin: 0;
 	z-index: 10;
 	transition: all 0.3s ease-in-out;
-	background-color: ${({ navBg }) => (navBg ? "rgba(39, 26, 0, 0.5)" : "transparent")};
+	background-color: ${({ navBg }) => (navBg ? "rgba(26, 32, 44, 0.9)" : "transparent")};
 	backdrop-filter: ${({ navBg }) => (navBg ? "saturate(180%) blur(5px)" : "transparent")};
-	${"" /* background: blue; */}
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

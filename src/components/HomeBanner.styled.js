@@ -6,8 +6,11 @@ export const BannerContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	position: relative;
-	background-size: cover;
-	background-image: url(${homeBg});
+
+	${
+		"" /* background-size: cover;
+	background-image: url(${homeBg}); */
+	}
 
 	@media only screen and (max-width: 900px) {
 		height: 100%;
@@ -27,6 +30,73 @@ export const BannerOverlay = styled.div`
 	padding-bottom: 10rem;
 `;
 
+export const BannerCarousel = styled.div`
+	position: relative;
+	${"" /* margin-top: 5rem; */}
+	height: 100%;
+	width: 100%;
+
+	.swiper {
+		width: 100%;
+		height: 100%;
+		background: #000;
+	}
+`;
+
+export const SliderContentContainer = styled.div`
+	display: flex;
+	padding-top: 5rem;
+	justify-content: space-between;
+	position: relative;
+	background-size: cover;
+	background-image: url(${homeBg});
+
+	@media only screen and (max-width: 900px) {
+		flex-direction: column;
+		padding-top: 3rem;
+		padding-bottom: 1rem;
+	}
+`;
+export const SliderContentImgBlk = styled.div`
+	width: 50%;
+	margin: 0 auto;
+	text-align: right;
+
+	img {
+		width: 100%;
+		max-width: 600px;
+		margin: 0 auto;
+
+		@media only screen and (max-width: 900px) {
+			margin-top: 1.4rem;
+			max-width: 350px;
+		}
+	}
+	@media only screen and (max-width: 900px) {
+		width: 80%;
+		text-align: center;
+	}
+`;
+export const SliderContentDetailBlk = styled.div`
+	width: 30%;
+	margin: 1.2rem auto 0;
+	color: ${Colour.textWhite};
+
+	h3 {
+		font-size: clamp(1.5rem, 5vw, 2.2rem);
+		font-weight: 700;
+		color: ${Colour.textWhite};
+	}
+	p {
+		font-size: clamp(0.7rem, 10vw, 1rem);
+	}
+
+	@media only screen and (max-width: 900px) {
+		height: 100%;
+		width: 80%;
+		text-align: center;
+	}
+`;
 export const BannerContent = styled.div`
 	position: relative;
 	padding-top: 5rem;
@@ -58,6 +128,7 @@ export const MainEventImg = styled.img`
 	margin: 0 auto;
 
 	@media only screen and (max-width: 900px) {
+		margin-top: 1.4rem;
 		max-width: 350px;
 	}
 `;
