@@ -26,7 +26,7 @@ const PreviewPrintTicket = ({ eventId, previewState, handlePreviewState }) => {
 						<PreviewTicketContent ref={(el) => (printRef = el)}>
 							<QRCode
 								value={
-									`${checkTicketStatus?.buyer_name}-is-verified-with-${checkTicketStatus?.buyer_email}` ||
+									`${checkTicketStatus?.buyer_name}-is-verified-with-${checkTicketStatus?.buyer_email}-of-gender-${checkTicketStatus?.buyer_gender}` ||
 									"Not Verified"
 								}
 								title={checkTicketStatus?.buyer_name || "Not Verified"}

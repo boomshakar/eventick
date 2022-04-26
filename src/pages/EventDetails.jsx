@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Modal as BuyTicket, Input, InputNumber, Space, Form } from "antd";
+import { Modal as BuyTicket, Input, InputNumber, Space, Form, Select, DatePicker } from "antd";
 import { mockedDataArr } from "../utils/Mockeddata";
 import Cookie from "js-cookie";
 import QRCode from "react-qr-code";
@@ -37,6 +37,9 @@ const EventDetails = () => {
 	const [modalText, setModalText] = useState("Content of the modal");
 	const [buyerName, setBuyerName] = useState("");
 	const [buyerEmail, setBuyerEmail] = useState("");
+	const [buyerGender, setBuyerGender] = useState("");
+	const [buyerBirthDate, setBuyerBirthDate] = useState("");
+	const [buyerPhoneNumber, setBuyerPhoneNumber] = useState("");
 	const [buyerCardNo, setBuyerCardNo] = useState("");
 	const [buyerCardMMYY, setBuyerCardMMYY] = useState("");
 	const [buyerCardCCV, setBuyerCardCCV] = useState("");
@@ -58,13 +61,18 @@ const EventDetails = () => {
 		setBuyTicketModal(true);
 	};
 	const handleOk = () => {
-		if (buyerName === "" || buyerEmail === "" || buyerCardNo === "" || buyerCardMMYY === "" || buyerCardCCV === "")
+		if (buyerName === "" || buyerEmail === "" || buyerGender === "" || buyerBirthDate === "" || buyerPhoneNumber === "")
 			return false;
 		setModalText("The modal will be closed after two seconds");
 		setConfirmLoading(true);
 		Cookie.set(
 			`event${eventDetail[0]?.id}`,
-			JSON.stringify({ id: `${eventDetail[0]?.id}`, buyer_name: buyerName, buyer_email: buyerEmail })
+			JSON.stringify({
+				id: `${eventDetail[0]?.id}`,
+				buyer_name: buyerName,
+				buyer_email: buyerEmail,
+				buyer_gender: buyerGender,
+			})
 		);
 		setTimeout(() => {
 			setPreviewState(true);
@@ -73,9 +81,9 @@ const EventDetails = () => {
 			setModalText("Content of the modal");
 			setBuyerName("");
 			setBuyerEmail("");
-			setBuyerCardNo("");
-			setBuyerCardMMYY("");
-			setBuyerCardCCV("");
+			setBuyerGender("");
+			setBuyerBirthDate("");
+			setBuyerPhoneNumber("");
 		}, 2000);
 	};
 	const handleCancel = () => {
@@ -211,29 +219,25 @@ const EventDetails = () => {
 				<div style={{ width: "100%", height: "100%" }}>
 					<Form layout="vertical">
 						<Form.Item label="Name" required tooltip="This is a required field">
-							<Input type="text" placeholder="input your Full Name" onChange={(e) => setBuyerName(e.target.value)} />
+							<Input type="text" placeholder="Full Name" onChange={(e) => setBuyerName(e.target.value)} />
 						</Form.Item>
 						<Form.Item label="Email" required tooltip="This is a required field">
-							<Input type="email" placeholder="input your Email" onChange={(e) => setBuyerEmail(e.target.value)} />
+							<Input type="email" placeholder="Email" onChange={(e) => setBuyerEmail(e.target.value)} />
 						</Form.Item>
-						<Form.Item
-							label="Card Information"
-							tooltip="Don't worry, just input some random numbers 😎"
-							style={{ marginBottom: 0 }}
-						>
-							<Form.Item name="cardNumber">
-								<Input
-									type="number"
-									placeholder="XXXX-XXXX-XXXX-XXXX"
-									onChange={(e) => setBuyerCardNo(e.target.value)}
-								/>
+						{/* phone number, gender, dob */}
+						<Space size="large" wrap>
+							<Form.Item label="Gender" required tooltip="This is a required field">
+								<Select placeholder="Select a gender" onChange={(e) => setBuyerGender(e)}>
+									<Select.Option value="female">Female</Select.Option>
+									<Select.Option value="male">Male</Select.Option>
+								</Select>
 							</Form.Item>
-							<Form.Item name="mmyy" style={{ display: "inline-block", width: "calc(50% - 8px)" }}>
-								<Input type="number" placeholder="MM/YY" onChange={(e) => setBuyerCardMMYY(e.target.value)} />
+							<Form.Item label="Date of Birth" required tooltip="This is a required field">
+								<DatePicker onChange={(a, b) => setBuyerBirthDate(b)} format="DD-MM-YYYY" />
 							</Form.Item>
-							<Form.Item name="ccv" style={{ display: "inline-block", width: "calc(50% - 1px)", margin: "0 0 0 8px" }}>
-								<Input type="number" placeholder="CCV" onChange={(e) => setBuyerCardCCV(e.target.value)} />
-							</Form.Item>
+						</Space>
+						<Form.Item label="Phone Number" required tooltip="This is a required field">
+							<Input type="number" placeholder="Phone Number" onChange={(e) => setBuyerPhoneNumber(e.target.value)} />
 						</Form.Item>
 					</Form>
 				</div>

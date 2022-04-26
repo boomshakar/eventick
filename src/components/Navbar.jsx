@@ -33,7 +33,6 @@ const Navbar = () => {
 			<Link to="/">
 				<Logo />
 			</Link>
-			<Link to="/event/1">Event</Link>
 		</Homenav>
 	);
 };
