@@ -260,11 +260,12 @@ const EventDetails = () => {
 						<Space size="large" wrap>
 							<Form.Item label="Gender" required tooltip="This is a required field">
 								<Select
-									placeholder="Select a gender"
+									placeholder="Select gender"
 									onChange={(e) => setBuyerGender((prevData) => ({ ...prevData, value: e }))}
 								>
 									<Select.Option value="female">Female</Select.Option>
 									<Select.Option value="male">Male</Select.Option>
+									<Select.Option value="notsay">Prefer not to say</Select.Option>
 								</Select>
 							</Form.Item>
 							<Form.Item label="Date of Birth" required tooltip="This is a required field">

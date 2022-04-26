@@ -11,6 +11,7 @@ import {
 	HomeSearcOption,
 } from "./HomeBanner.styled";
 import eventImg from "../assets/pngguru-2.png";
+import { Form, Input } from "antd";
 
 const HomeBanner = () => {
 	return (
@@ -35,30 +36,15 @@ const HomeBanner = () => {
 				</BannerContent>
 				{/* </BannerOverlay> */}
 				<HomeSearcBox>
-					<HomeSearcOption>
-						<div>
-							<label htmlFor="">Search Event</label>
-						</div>
-						<div>
-							<input type="text" name="" />
-						</div>
-					</HomeSearcOption>
-					<HomeSearcOption>
-						<div>
-							<label htmlFor="">Place</label>
-						</div>
-						<div>
-							<input type="text" name="" />
-						</div>
-					</HomeSearcOption>
-					<HomeSearcOption>
-						<div>
-							<label htmlFor="">Time</label>
-						</div>
-						<div>
-							<input type="text" name="" />
-						</div>
-					</HomeSearcOption>
+					<Form.Item label="Search Event">
+						<Input type="text" placeholder="" onChange={(e) => {}} />
+					</Form.Item>
+					<Form.Item label="Place">
+						<Input type="text" placeholder="" onChange={(e) => {}} />
+					</Form.Item>
+					<Form.Item label="Time">
+						<Input type="text" placeholder="" onChange={(e) => {}} />
+					</Form.Item>
 				</HomeSearcBox>
 			</BannerContainer>
 		</div>

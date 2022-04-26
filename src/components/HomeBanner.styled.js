@@ -119,12 +119,24 @@ export const HomeSearcBox = styled.div`
 	${"" /* margin-left: -470px; */}
 	padding: 1rem 2rem;
 	z-index: 2;
-	border-radius: 30px;
+	border-radius: 10px;
 	box-shadow: 0px 10px 50px rgba(61, 55, 241, 0.25);
 	display: flex;
 	justify-content: space-around;
-	background: ${Colour.navyBlue};
+	background: ${Colour.bgGrey};
 
+	.ant-row.ant-form-item {
+		margin: 0;
+
+		.ant-form-item-label label {
+			color: ${Colour.navyBlue};
+			font-weight: bold;
+		}
+
+		.ant-input {
+			background-color: transparent;
+		}
+	}
 	@media only screen and (max-width: 900px) {
 		display: none;
 	}
