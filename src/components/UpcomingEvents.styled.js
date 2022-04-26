@@ -4,12 +4,24 @@ import Colour from "../utils/Color";
 export const TopBar = styled.div`
 	display: flex;
 	justify-content: space-between;
+	padding: 1rem;
+
+	h2 {
+		color: ${Colour.navyBlue};
+		font-weight: bold;
+	}
+	@media only screen and (max-width: 900px) {
+		margin-top: 1rem;
+	}
 `;
 export const TopBarFilter = styled.div`
 	display: flex;
 	width: 30%;
 	align-items: center;
 	justify-content: space-between;
+	@media only screen and (max-width: 900px) {
+		display: none;
+	}
 `;
 export const CardContainer = styled.div`
 	display: flex;
