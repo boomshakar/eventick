@@ -27,6 +27,8 @@ export const TopBarFilter = styled.div`
 export const CardContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+	max-width: 1449px;
+	margin: 0 auto;
 `;
 
 export const CardTopSection = styled.div`
