@@ -15,6 +15,8 @@ import {
 	SliderContentDetailBlk,
 } from "./HomeBanner.styled";
 import eventImg from "../assets/pngguru-2.png";
+import eventImg2 from "../assets/pngguru-3.png";
+import eventImg3 from "../assets/pngguru-4.png";
 import { Form, Input } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
@@ -22,7 +24,19 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
-const HomeBanner = () => {
+import searchData from "../utils/searchData.js";
+import { mockedDataArr } from "../utils/Mockeddata";
+import { useState } from "react";
+import { showToastMessage } from "../utils/Toast";
+
+const HomeBanner = ({ isSearching, setIsSearching, setSearchEvent }) => {
+	const handleSoldOut = () => {
+		showToastMessage({
+			type: "error",
+			title: "Sorry",
+			description: "The ticket for this event has already been sold out",
+		});
+	};
 	return (
 		<div style={{ postion: "relative", height: "100%" }}>
 			<BannerContainer>
@@ -32,7 +46,7 @@ const HomeBanner = () => {
 							clickable: true,
 						}}
 						autoplay={{
-							delay: 2500,
+							delay: 4500,
 							disableOnInteraction: false,
 						}}
 						speed={200}
@@ -52,8 +66,10 @@ const HomeBanner = () => {
 										recording.
 									</p>
 									<EventBtnContain>
-										<EventBtn bg="primary">Get Ticket</EventBtn>
-										<EventBtn>Learn More</EventBtn>
+										<EventBtn onClick={handleSoldOut} bg="primary">
+											Get Ticket
+										</EventBtn>
+										<EventBtn onClick={handleSoldOut}>Learn More</EventBtn>
 									</EventBtnContain>
 								</SliderContentDetailBlk>
 							</SliderContentContainer>
@@ -61,7 +77,7 @@ const HomeBanner = () => {
 						<SwiperSlide>
 							<SliderContentContainer>
 								<SliderContentImgBlk>
-									<img src={eventImg} alt="" />
+									<img src={eventImg2} alt="" />
 								</SliderContentImgBlk>
 								<SliderContentDetailBlk>
 									<h3>SBS MTV The Kpop Show Ticket Package</h3>
@@ -70,8 +86,10 @@ const HomeBanner = () => {
 										recording.
 									</p>
 									<EventBtnContain>
-										<EventBtn bg="primary">Get Ticket</EventBtn>
-										<EventBtn>Learn More</EventBtn>
+										<EventBtn onClick={handleSoldOut} bg="primary">
+											Get Ticket
+										</EventBtn>
+										<EventBtn onClick={handleSoldOut}>Learn More</EventBtn>
 									</EventBtnContain>
 								</SliderContentDetailBlk>
 							</SliderContentContainer>
@@ -79,7 +97,7 @@ const HomeBanner = () => {
 						<SwiperSlide>
 							<SliderContentContainer>
 								<SliderContentImgBlk>
-									<img src={eventImg} alt="" />
+									<img src={eventImg3} alt="" />
 								</SliderContentImgBlk>
 								<SliderContentDetailBlk>
 									<h3>SBS MTV The Kpop Show Ticket Package</h3>
@@ -88,8 +106,10 @@ const HomeBanner = () => {
 										recording.
 									</p>
 									<EventBtnContain>
-										<EventBtn bg="primary">Get Ticket</EventBtn>
-										<EventBtn>Learn More</EventBtn>
+										<EventBtn onClick={handleSoldOut} bg="primary">
+											Get Ticket
+										</EventBtn>
+										<EventBtn onClick={handleSoldOut}>Learn More</EventBtn>
 									</EventBtnContain>
 								</SliderContentDetailBlk>
 							</SliderContentContainer>
@@ -107,22 +127,25 @@ const HomeBanner = () => {
 							recording.
 						</p>
 						<EventBtnContain>
-							<EventBtn bg="primary">Get Ticket</EventBtn>
-							<EventBtn>Learn More</EventBtn>
+							<EventBtn onClick={handleSoldOut} bg="primary">Get Ticket</EventBtn>
+							<EventBtn onClick={handleSoldOut}>Learn More</EventBtn>
 						</EventBtnContain>
 					</MainEventInfo>
 				</BannerContent> */}
 				{/* </BannerOverlay> */}
 				<HomeSearcBox>
-					<Form.Item label="Search Event">
-						<Input type="text" placeholder="" onChange={(e) => {}} />
-					</Form.Item>
-					<Form.Item label="Place">
-						<Input type="text" placeholder="" onChange={(e) => {}} />
-					</Form.Item>
-					<Form.Item label="Time">
-						<Input type="text" placeholder="" onChange={(e) => {}} />
-					</Form.Item>
+					{/* <Form.Item> */}
+					<Input
+						type="text"
+						bordered={false}
+						placeholder="Search for Events, Time or Location"
+						onChange={(event) => {
+							setIsSearching(true);
+							searchData(event, mockedDataArr, setSearchEvent, ["event_title", "event_date", "location"]);
+						}}
+						allowClear
+					/>
+					{/* </Form.Item> */}
 				</HomeSearcBox>
 			</BannerContainer>
 		</div>

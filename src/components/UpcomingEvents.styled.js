@@ -3,6 +3,7 @@ import Colour from "../utils/Color";
 
 export const TopBar = styled.div`
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	padding: 1rem;
 	margin-top: 2rem;
@@ -16,12 +17,21 @@ export const TopBar = styled.div`
 	}
 `;
 export const TopBarFilter = styled.div`
-	display: flex;
-	width: 30%;
-	align-items: center;
-	justify-content: space-between;
+	display: none;
 	@media only screen and (max-width: 900px) {
-		display: none;
+		display: flex;
+		width: 50%;
+		align-items: center;
+		justify-content: center;
+
+		.ant-input-affix-wrapper > input.ant-input {
+			padding: 0.3rem;
+			font-size: clamp(1rem, 3vw, 1.2rem);
+		}
+		.anticon.ant-input-clear-icon,
+		.ant-input-clear-icon {
+			font-size: clamp(1.2rem, 3vw, 1.5rem);
+		}
 	}
 `;
 export const CardContainer = styled.div`

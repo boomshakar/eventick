@@ -182,13 +182,13 @@ export const EventBtn = styled.button`
 
 export const HomeSearcBox = styled.div`
 	position: absolute;
-	bottom: -8%;
+	bottom: -5%;
 	width: 70%;
 	left: 15%;
 	right: auto;
 	margin: 0 auto;
 	${"" /* margin-left: -470px; */}
-	padding: 1rem 2rem;
+	padding: .3rem 2rem;
 	z-index: 2;
 	border-radius: 10px;
 	box-shadow: 0px 10px 50px rgba(61, 55, 241, 0.25);
@@ -196,17 +196,13 @@ export const HomeSearcBox = styled.div`
 	justify-content: space-around;
 	background: ${Colour.bgGrey};
 
-	.ant-row.ant-form-item {
-		margin: 0;
-
-		.ant-form-item-label label {
-			color: ${Colour.navyBlue};
-			font-weight: bold;
-		}
-
-		.ant-input {
-			background-color: transparent;
-		}
+	.ant-input-affix-wrapper > input.ant-input {
+		padding: 0.3rem;
+		font-size: 1.2rem;
+	}
+	.anticon.ant-input-clear-icon,
+	.ant-input-clear-icon {
+		font-size: 1.5rem;
 	}
 	@media only screen and (max-width: 900px) {
 		display: none;
