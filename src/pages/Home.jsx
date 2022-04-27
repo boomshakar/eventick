@@ -7,7 +7,6 @@ const Home = () => {
 	const [isSearching, setIsSearching] = useState(false);
 	return (
 		<div style={{ backgroundColor: "#e5e5e5" }}>
-			{/* <h1>Home</h1> */}
 			<HomeBanner isSearching={isSearching} setIsSearching={setIsSearching} setSearchEvent={setSearchEvent} />
 			<UpcomingEvents isSearching={isSearching} searchEvent={searchEvent} />
 		</div>

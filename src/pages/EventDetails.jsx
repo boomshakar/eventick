@@ -1,11 +1,9 @@
 import React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Modal as BuyTicket, Input, InputNumber, Space, Form, Select, DatePicker } from "antd";
+import { Modal as BuyTicket, Input, Space, Form, Select, DatePicker } from "antd";
 import { mockedDataArr } from "../utils/Mockeddata";
 import Cookie from "js-cookie";
-import QRCode from "react-qr-code";
-import ReactToPrint from "react-to-print";
 import {
 	EventBottomL,
 	EventBottomR,
@@ -26,7 +24,7 @@ import {
 	EventTopInfoMobile,
 	EventTopSection,
 	PageContain,
-} from "./EventDetails.styled";
+} from "../styled/EventDetails.styled";
 import PreviewPrintTicket from "../components/PreviewPrintTicket";
 import { fieldChecker, thousandFormatter } from "../utils/helper";
 import { showToastMessage } from "../utils/Toast";
@@ -42,12 +40,10 @@ const EventDetails = () => {
 	const [buyerGender, setBuyerGender] = useState({ id: "Gender", value: "" });
 	const [buyerBirthDate, setBuyerBirthDate] = useState({ id: "Birthdate", value: "" });
 	const [buyerPhoneNumber, setBuyerPhoneNumber] = useState({ id: "Phone Number", value: "" });
-	const [showPreviewTicket, setShowPreviewTicket] = useState(false);
 	const [previewState, setPreviewState] = useState(false);
 
 	let checkTicketStatus = Cookie.get(`event${eventDetail[0]?.id}`);
 	checkTicketStatus = checkTicketStatus !== undefined && JSON.parse(checkTicketStatus);
-	// console.log({ checkTicketStatus: JSON.parse(checkTicketStatus) });
 	const ticketBought = checkTicketStatus?.id === eventId;
 
 	useEffect(() => {
@@ -111,7 +107,6 @@ const EventDetails = () => {
 		}, 2000);
 	};
 	const handleCancel = () => {
-		console.log("Clicked cancel button");
 		setBuyTicketModal(false);
 	};
 	const handleToPreviewTicket = () => {
@@ -161,7 +156,6 @@ const EventDetails = () => {
 											</EventTopInfo02>
 											{ticketBought ? (
 												<>
-													{/* <EventTopInfo03 disabled>Ticket Bought</EventTopInfo03> */}
 													<EventTopInfo03 prev onClick={handleToPreviewTicket}>
 														Preview Ticket
 													</EventTopInfo03>
@@ -180,7 +174,6 @@ const EventDetails = () => {
 												</EventTopInfo01>
 												{ticketBought ? (
 													<>
-														{/* <EventTopInfo03 disabled>Ticket Bought</EventTopInfo03> */}
 														<EventTopInfo03 prev onClick={handleToPreviewTicket}>
 															Preview Ticket
 														</EventTopInfo03>
@@ -232,6 +225,13 @@ const EventDetails = () => {
 				)}
 			</PageContain>
 
+			{previewState && (
+				<PreviewPrintTicket
+					eventId={eventDetail[0]?.id}
+					handlePreviewState={() => setPreviewState(false)}
+					previewState={previewState}
+				/>
+			)}
 			<BuyTicket
 				title="Fill in the required information"
 				visible={buyTicketModal}
@@ -256,7 +256,6 @@ const EventDetails = () => {
 								onChange={(e) => setBuyerEmail((prevData) => ({ ...prevData, value: e.target.value }))}
 							/>
 						</Form.Item>
-						{/* phone number, gender, dob */}
 						<Space size="large" wrap>
 							<Form.Item label="Gender" required tooltip="This is a required field">
 								<Select
@@ -285,13 +284,6 @@ const EventDetails = () => {
 					</Form>
 				</div>
 			</BuyTicket>
-			{previewState && (
-				<PreviewPrintTicket
-					eventId={eventDetail[0]?.id}
-					handlePreviewState={() => setPreviewState(false)}
-					previewState={previewState}
-				/>
-			)}
 		</>
 	);
 };

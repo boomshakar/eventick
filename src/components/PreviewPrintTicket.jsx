@@ -2,9 +2,9 @@ import Cookie from "js-cookie";
 import QRCode from "react-qr-code";
 import ReactToPrint from "react-to-print";
 import { Modal } from "antd";
-import { PreviewTicketContainer, PreviewTicketContent } from "./PreviewPrint.styled";
+import { PreviewTicketContainer, PreviewTicketContent } from "../styled/PreviewPrint.styled";
 import { useRef } from "react";
-import { EventTopInfo03 } from "../pages/EventDetails.styled";
+import { EventTopInfo03 } from "../styled/EventDetails.styled";
 
 const PreviewPrintTicket = ({ eventId, previewState, handlePreviewState }) => {
 	let checkTicketStatus = Cookie.get(`event${eventId}`);
@@ -12,15 +12,7 @@ const PreviewPrintTicket = ({ eventId, previewState, handlePreviewState }) => {
 	let printRef = useRef();
 	return (
 		<div>
-			<Modal
-				title="Preview Ticket"
-				visible={previewState}
-				footer={false}
-				// onOk={}
-				// okText="Pay"
-				// confirmLoading={}
-				onCancel={handlePreviewState}
-			>
+			<Modal title="Preview Ticket" visible={previewState} footer={false} onCancel={handlePreviewState}>
 				<div>
 					<PreviewTicketContainer>
 						<PreviewTicketContent ref={(el) => (printRef = el)}>

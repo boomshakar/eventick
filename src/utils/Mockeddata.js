@@ -3,7 +3,6 @@ import event2 from "../assets/eventarr-2.jpg";
 import event3 from "../assets/eventarr-3.jpg";
 import event4 from "../assets/eventarr-4.jpg";
 import event5 from "../assets/eventarr-5.jpg";
-import event6 from "../assets/event-6.png";
 
 export const mockedDataArr = [
 	{

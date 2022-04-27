@@ -1,23 +1,17 @@
 import {
 	BannerContainer,
-	BannerOverlay,
-	BannerContent,
-	MainEventImgContain,
-	MainEventImg,
-	MainEventInfo,
 	EventBtnContain,
 	EventBtn,
 	HomeSearcBox,
-	HomeSearcOption,
 	BannerCarousel,
 	SliderContentContainer,
 	SliderContentImgBlk,
 	SliderContentDetailBlk,
-} from "./HomeBanner.styled";
+} from "../styled/HomeBanner.styled";
 import eventImg from "../assets/pngguru-2.png";
 import eventImg2 from "../assets/pngguru-3.png";
 import eventImg3 from "../assets/pngguru-4.png";
-import { Form, Input } from "antd";
+import { Input } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
 import "swiper/css";
@@ -26,7 +20,6 @@ import "swiper/css/navigation";
 
 import searchData from "../utils/searchData.js";
 import { mockedDataArr } from "../utils/Mockeddata";
-import { useState } from "react";
 import { showToastMessage } from "../utils/Toast";
 
 const HomeBanner = ({ isSearching, setIsSearching, setSearchEvent }) => {
@@ -116,25 +109,7 @@ const HomeBanner = ({ isSearching, setIsSearching, setSearchEvent }) => {
 						</SwiperSlide>
 					</Swiper>
 				</BannerCarousel>
-				{/* <BannerContent>
-					<MainEventImgContain>
-						<MainEventImg src={eventImg} alt="" />
-					</MainEventImgContain>
-					<MainEventInfo>
-						<h3>SBS MTV The Kpop Show Ticket Package</h3>
-						<p>
-							Look no further! Our SBS The Show tickets are the simplest way for you to experience a live Kpop
-							recording.
-						</p>
-						<EventBtnContain>
-							<EventBtn onClick={handleSoldOut} bg="primary">Get Ticket</EventBtn>
-							<EventBtn onClick={handleSoldOut}>Learn More</EventBtn>
-						</EventBtnContain>
-					</MainEventInfo>
-				</BannerContent> */}
-				{/* </BannerOverlay> */}
 				<HomeSearcBox>
-					{/* <Form.Item> */}
 					<Input
 						type="text"
 						bordered={false}
@@ -145,7 +120,6 @@ const HomeBanner = ({ isSearching, setIsSearching, setSearchEvent }) => {
 						}}
 						allowClear
 					/>
-					{/* </Form.Item> */}
 				</HomeSearcBox>
 			</BannerContainer>
 		</div>

@@ -42,7 +42,6 @@ const Navbar = () => {
 
 	useEffect(() => {
 		changeBackground();
-		// adding the event when scroll change Logo
 		window.addEventListener("scroll", changeBackground);
 	});
 	return (
